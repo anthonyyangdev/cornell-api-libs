@@ -1,6 +1,7 @@
 package com.developersam.api.cornell.data
 
 import com.google.gson.annotations.SerializedName
+
 /**
  * [AcademicGroupsResponse] is the response of a Academic Groups request.
  */

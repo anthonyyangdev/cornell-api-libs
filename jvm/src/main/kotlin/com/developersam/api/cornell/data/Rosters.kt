@@ -73,19 +73,19 @@ class Roster private constructor() {
     /**
      * The default campus.
      */
-    lateinit var defaultCampus: String
+    lateinit var defaultCampus: Campus
         private set
 
     /**
      * The default location.
      */
-    lateinit var defaultLocation: String
+    lateinit var defaultLocation: CampusLocation
         private set
 
     /**
      * The default instruction mode.
      */
-    lateinit var defaultInstructionMode: String
+    lateinit var defaultInstructionMode: InstructionMode
         private set
 
     /**
@@ -100,8 +100,10 @@ class Roster private constructor() {
     val isInArchiveMode: Bool = Bool.N
 
     /**
-     * A datetime stamp of the last modified date.
+     * A datetime stamp of the last modified date time.
      */
-    lateinit var lastModifiedDttm: String
+    @SerializedName(value = "lastModifiedDttm")
+    lateinit var lastModifiedDatetime: String
         private set
+    
 }

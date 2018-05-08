@@ -16,6 +16,38 @@ enum class Bool {
 }
 
 /**
+ * [Campus] is a collection of supported campus values.
+ *
+ * @param description a simple description of the campus.
+ */
+enum class Campus(val description: String) {
+    /**
+     * Main campus
+     */
+    MAIN("Ithaca"),
+    /**
+     * New York City Cornell Tech.
+     */
+    NYT("New York Tech Campus")
+}
+
+/**
+ * [CampusLocation] is a collection of supported campus location values.
+ *
+ * @param description a simple description of the campus location.
+ */
+enum class CampusLocation(val description: String) {
+    /**
+     * Main campus
+     */
+    ITH("Ithaca, NY (Main Campus)"),
+    /**
+     * New York City Cornell Tech.
+     */
+    NYCTECH("Cornell Tech")
+}
+
+/**
  * [AcademicCareerValue] is a collection of supported academic career value.
  *
  * @param description a simple description of the code.
@@ -222,4 +254,53 @@ enum class SubjectValue(val description: String) {
     WRIT(description = "Writing Program"),
     YORUB(description = "Yoruba"),
     ZULU(description = "Zulu")
+}
+
+/**
+ * [ClassComponent] is a collection of supported class components.
+ */
+enum class ClassComponent {
+    /**
+     * Lecture
+     */
+    LEC,
+    /**
+     * Discussion
+     */
+    DIS,
+    /**
+     * Lab
+     */
+    LAB,
+    /**
+     * TA
+     */
+    TA
+}
+
+/**
+ * [GradingBasis] is a collection of supported grading basis.
+ */
+enum class GradingBasis {
+    /**
+     * Letter Grade
+     */
+    GRD,
+    /**
+     * Student Choice
+     */
+    OPT,
+    /**
+     * S/U only
+     */
+    SUS
+}
+
+/**
+ * [InstructionMode] is a collection of supported instruction modes.
+ *
+ * @param description a simple description of the code.
+ */
+enum class InstructionMode(val description: String) {
+    P("In Person"), DW("Distance Learning - WWW")
 }
