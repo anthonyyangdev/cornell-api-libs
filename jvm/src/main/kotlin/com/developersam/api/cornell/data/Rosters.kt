@@ -105,5 +105,5 @@ class Roster private constructor() {
     @SerializedName(value = "lastModifiedDttm")
     lateinit var lastModifiedDatetime: String
         private set
-    
+
 }
