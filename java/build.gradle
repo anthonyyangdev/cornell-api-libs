@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'com.developersam'
+version '0.1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // GSON
+    compile 'com.google.code.gson:gson:2.8.2'
+    // Http
+    compile 'com.mashape.unirest:unirest-java:1.4.9'
+}
