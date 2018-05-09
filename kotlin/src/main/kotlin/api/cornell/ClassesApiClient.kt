@@ -1,56 +1,65 @@
 package api.cornell
 
 import api.cornell.data.classes.AcademicCareer
-import api.cornell.data.classes.AcademicCareerValue
-import api.cornell.response.classes.AcademicCareersResponse
 import api.cornell.data.classes.AcademicGroup
-import api.cornell.data.classes.AcademicGroupValue
-import api.cornell.response.classes.AcademicGroupsResponse
 import api.cornell.data.classes.ClassLevel
-import api.cornell.response.classes.ClassLevelsResponse
-import api.cornell.response.classes.CoursesResponse
 import api.cornell.data.classes.Course
 import api.cornell.data.classes.Roster
-import api.cornell.response.classes.RostersResponse
 import api.cornell.data.classes.Subject
-import api.cornell.data.classes.SubjectValue
+import api.cornell.response.classes.AcademicCareersResponse
+import api.cornell.response.classes.AcademicGroupsResponse
+import api.cornell.response.classes.ClassLevelsResponse
+import api.cornell.response.classes.CoursesResponse
+import api.cornell.response.classes.RostersResponse
 import api.cornell.response.classes.SubjectsResponse
-import com.github.kittinunf.fuel.httpGet
-import com.github.kittinunf.result.Result
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonDeserializer
 
 /**
- * [ClassesApiClient] defines a set of operation that the Cornell API Client supports.
+ * [ClassesApiClient] defines a set of operation that the Cornell Classes API Client supports.
  */
 object ClassesApiClient {
 
     /**
-     * [PREFIX] is the URL prefix for API requests.
-     */
-    private const val PREFIX = "https://classes.cornell.edu/api/2.0"
-    /**
      * [gson] is used for JSON processing.
      */
-    private val gson: Gson = Gson()
-
+    private val gson: Gson = GsonBuilder()
+            .registerTypeAdapter(AcademicCareer::class.java,
+                    JsonDeserializer<AcademicCareer> { json, _, _ ->
+                        val value = if (json.isJsonObject) {
+                            val obj = json.asJsonObject
+                            obj["value"].asString
+                        } else {
+                            json.asString
+                        }
+                        AcademicCareer.valueOf(value)
+                    })
+            .registerTypeAdapter(AcademicGroup::class.java,
+                    JsonDeserializer<AcademicGroup> { json, _, _ ->
+                        val value = if (json.isJsonObject) {
+                            val obj = json.asJsonObject
+                            obj["value"].asString
+                        } else {
+                            json.asString
+                        }
+                        AcademicGroup.valueOf(value)
+                    })
+            .registerTypeAdapter(Subject::class.java,
+                    JsonDeserializer<Subject> { json, _, _ ->
+                        val value = if (json.isJsonObject) {
+                            val obj = json.asJsonObject
+                            obj["value"].asString
+                        } else {
+                            json.asString
+                        }
+                        Subject.valueOf(value)
+                    })
+            .create()
     /**
-     * [request] is a function that fetch the result from Cornell APIs without the prefix.
-     *
-     * @param path API path without prefix.
-     * @param parameters defines a list of parameters to give. This is optional.
-     * @param handler defines a handler to process result.
+     * [http] is used to send requests.
      */
-    private inline fun <reified T> request(path: String,
-                                           parameters: List<Pair<String, Any?>>? = null,
-                                           crossinline handler: (T?) -> Unit) {
-        val url = PREFIX + path
-        url.httpGet(parameters = parameters).responseString { _, _, result ->
-            when (result) {
-                is Result.Success -> handler(gson.fromJson(result.value, T::class.java))
-                is Result.Failure -> handler(null)
-            }
-        }
-    }
+    private val http: Http = Http(prefix = "https://classes.cornell.edu/api/2.0", gson = gson)
 
     /**
      * Obtain all available Cornell rosters.
@@ -58,7 +67,7 @@ object ClassesApiClient {
      * @param handler handler to receive all available Cornell rosters.
      */
     fun getRosters(handler: (List<Roster>?) -> Unit) =
-            request<RostersResponse>(path = "/config/rosters.json") { handler(it?.rosters) }
+            http.request<RostersResponse>(path = "/config/rosters.json") { handler(it?.rosters) }
 
     /**
      * Obtain all available academic careers for a roster.
@@ -69,8 +78,9 @@ object ClassesApiClient {
      * @param handler handler to receive all available academic careers for a roster.
      */
     fun getAcademicCareers(roster: String, handler: (List<AcademicCareer>?) -> Unit) =
-            request<AcademicCareersResponse>(path = "/config/acadCareers.json",
-                    parameters = listOf("roster" to roster)) { handler(it?.academicCareers) }
+            http.request<AcademicCareersResponse>(
+                    path = "/config/acadCareers.json", parameters = listOf("roster" to roster)
+            ) { handler(it?.academicCareers) }
 
     /**
      * Obtain all available academic groups for a roster.
@@ -81,8 +91,9 @@ object ClassesApiClient {
      * @param handler handler to receive all available academic groups for a roster.
      */
     fun getAcademicGroups(roster: String, handler: (List<AcademicGroup>?) -> Unit) =
-            request<AcademicGroupsResponse>(path = "/config/acadGroups.json",
-                    parameters = listOf("roster" to roster)) { handler(it?.academicGroups) }
+            http.request<AcademicGroupsResponse>(
+                    path = "/config/acadGroups.json", parameters = listOf("roster" to roster)
+            ) { handler(it?.academicGroups) }
 
     /**
      * Obtain all available class levels for a roster.
@@ -93,8 +104,9 @@ object ClassesApiClient {
      * @param handler handle to receive all available class levels for a roster.
      */
     fun getClassLevels(roster: String, handler: (List<ClassLevel>?) -> Unit) =
-            request<ClassLevelsResponse>(path = "/config/classLevels.json",
-                    parameters = listOf("roster" to roster)) { handler(it?.classLevels) }
+            http.request<ClassLevelsResponse>(
+                    path = "/config/classLevels.json", parameters = listOf("roster" to roster)
+            ) { handler(it?.classLevels) }
 
     /**
      * Obtain all available course subjects for a roster.
@@ -103,8 +115,9 @@ object ClassesApiClient {
      * @param handler handle to receive all available course subjects for a roster.
      */
     fun getSubjects(roster: String, handler: (List<Subject>?) -> Unit) =
-            request<SubjectsResponse>(path = "/config/subjects.json",
-                    parameters = listOf("roster" to roster)) { handler(it?.subjects) }
+            http.request<SubjectsResponse>(
+                    path = "/config/subjects.json", parameters = listOf("roster" to roster)
+            ) { handler(it?.subjects) }
 
     /**
      * Obtain all classes in the specified roster and subject that match the input query.
@@ -118,7 +131,7 @@ object ClassesApiClient {
      * @param handler handler to receive all classes in the specified roster and subject that match
      * the input query.
      */
-    fun getCourses(roster: String, subject: SubjectValue, handler: (List<Course>?) -> Unit) =
+    fun getCourses(roster: String, subject: Subject, handler: (List<Course>?) -> Unit) =
             getCourses(roster, subject, null, null,
                     null, null, null, handler)
 
@@ -135,9 +148,9 @@ object ClassesApiClient {
      * @param handler handler to receive all classes in the specified roster and subject that match
      * the input query.
      */
-    fun getCourses(roster: String, subject: SubjectValue,
-                   academicCareers: Array<AcademicCareerValue>?,
-                   academicGroups: Array<AcademicGroupValue>?,
+    fun getCourses(roster: String, subject: Subject,
+                   academicCareers: Array<AcademicCareer>?,
+                   academicGroups: Array<AcademicGroup>?,
                    classLevels: IntArray?, classAttributes: Array<String>?,
                    query: String?, handler: (List<Course>?) -> Unit) {
         val params: MutableList<Pair<String, Any?>> =
@@ -163,15 +176,9 @@ object ClassesApiClient {
             }
         }
         query?.let { params.add("q" to it) }
-        request<CoursesResponse>(path = "/search/classes.json", parameters = params) {
-            val courses = it?.courses
-            if (courses == null) {
-                println("ITTT:")
-                println()
-                println(it)
-            }
-            handler(courses)
-        }
+        http.request<CoursesResponse>(
+                path = "/search/classes.json", parameters = params
+        ) { handler(it?.courses) }
     }
 
 }

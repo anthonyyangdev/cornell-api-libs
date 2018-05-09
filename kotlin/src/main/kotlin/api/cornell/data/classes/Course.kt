@@ -32,7 +32,7 @@ data class Course(
         @SerializedName(value = "strm") val semesterCode: Int,
         @SerializedName(value = "crseId") val courseId: Int,
         @SerializedName(value = "crseOfferNbr") val courseOfferNumber: Int,
-        val subject: SubjectValue,
+        val subject: Subject,
         @SerializedName(value = "catalogNbr") val catalogNumber: String,
         @SerializedName(value = "titleShort") val shortTitle: String,
         @SerializedName(value = "titleLong") val longTitle: String,
@@ -48,7 +48,7 @@ data class Course(
         @SerializedName(value = "catalogSatisfiesReq") val catalogSatisfiesRequisite: String,
         val catalogPermission: String,
         val catalogCourseSubfield: String,
-        @SerializedName(value = "acadCareer") val academicCareer: AcademicCareerValue,
-        @SerializedName(value = "acadGroup") val academicGroup: AcademicGroupValue,
+        @SerializedName(value = "acadCareer") val academicCareer: AcademicCareer,
+        @SerializedName(value = "acadGroup") val academicGroup: AcademicGroup,
         val enrollGroups: List<EnrollGroup>
 )

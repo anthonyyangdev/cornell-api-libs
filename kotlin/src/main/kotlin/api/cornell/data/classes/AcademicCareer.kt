@@ -1,8 +1,30 @@
 package api.cornell.data.classes
 
 /**
- * [AcademicCareer] contains all the useful information about academic careers.
+ * [AcademicCareer] is a collection of supported academic career value.
  *
- * @param value value of the academic career.
+ * @param description a simple description of the code.
  */
-data class AcademicCareer(val value: AcademicCareerValue)
+enum class AcademicCareer(val description: String) {
+
+    /**
+     * Undergraduate.
+     */
+    UG("Undergraduate"),
+    /**
+     * Graduate
+     */
+    GR("Graduate"),
+    /**
+     * Graduate Management
+     */
+    GM("Graduate Management"),
+    /**
+     * Law.
+     */
+    LA("Law"),
+    /**
+     * Veterinary Medicine.
+     */
+    VM("Veterinary Medicine")
+}

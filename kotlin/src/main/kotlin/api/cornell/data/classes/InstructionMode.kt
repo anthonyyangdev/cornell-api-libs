@@ -6,5 +6,12 @@ package api.cornell.data.classes
  * @param description a simple description of the code.
  */
 enum class InstructionMode(val description: String) {
-    P("In Person"), DW("Distance Learning - WWW")
+    /**
+     * In Person.
+     */
+    P("In Person"),
+    /**
+     * Distance Learning - WWW.
+     */
+    DW("Distance Learning - WWW")
 }
