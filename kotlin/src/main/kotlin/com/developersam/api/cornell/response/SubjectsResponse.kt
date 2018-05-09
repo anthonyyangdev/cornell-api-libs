@@ -1,4 +1,6 @@
-package com.developersam.api.cornell.data
+package com.developersam.api.cornell.response
+
+import com.developersam.api.cornell.data.Subject
 
 /**
  * [SubjectsResponse] is the response of a Subjects request.
@@ -24,9 +26,4 @@ internal class SubjectsResponse private constructor() {
 
 }
 
-/**
- * [Subject] contains all the useful information about subjects.
- *
- * @param value value of the academic group.
- */
-data class Subject(val value: SubjectValue)
+

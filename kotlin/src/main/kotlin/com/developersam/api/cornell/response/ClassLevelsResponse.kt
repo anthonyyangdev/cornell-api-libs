@@ -1,6 +1,6 @@
-package com.developersam.api.cornell.data
+package com.developersam.api.cornell.response
 
-import com.google.gson.annotations.SerializedName
+import com.developersam.api.cornell.data.ClassLevel
 
 /**
  * [ClassLevelsResponse] is the response of a Class Levels request.
@@ -25,10 +25,3 @@ internal class ClassLevelsResponse private constructor() {
     }
 
 }
-
-/**
- * [ClassLevel] contains all the useful information about class levels.
- *
- * @param value value of the academic group.
- */
-data class ClassLevel(@SerializedName(value = "descr") val value: Int = 0)

@@ -1,4 +1,6 @@
-package com.developersam.api.cornell.data
+package com.developersam.api.cornell.response
+
+import com.developersam.api.cornell.data.AcademicCareer
 
 /**
  * [AcademicCareersResponse] is the response of a Academic Careers request.
@@ -24,9 +26,3 @@ internal class AcademicCareersResponse private constructor() {
 
 }
 
-/**
- * [AcademicCareer] contains all the useful information about academic careers.
- *
- * @param value value of the academic career.
- */
-data class AcademicCareer(val value: AcademicCareerValue)

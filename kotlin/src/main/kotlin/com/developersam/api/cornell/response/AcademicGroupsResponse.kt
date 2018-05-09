@@ -1,4 +1,6 @@
-package com.developersam.api.cornell.data
+package com.developersam.api.cornell.response
+
+import com.developersam.api.cornell.data.AcademicGroup
 
 /**
  * [AcademicGroupsResponse] is the response of a Academic Groups request.
@@ -24,9 +26,4 @@ internal class AcademicGroupsResponse private constructor() {
 
 }
 
-/**
- * [AcademicGroup] contains all the useful information about academic groups.
- *
- * @param value value of the academic group.
- */
-data class AcademicGroup(val value: AcademicGroupValue)
+
