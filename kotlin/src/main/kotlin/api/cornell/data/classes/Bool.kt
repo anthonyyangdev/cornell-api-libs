@@ -1,4 +1,4 @@
-package api.cornell.data
+package api.cornell.data.classes
 
 /**
  * A simple [Bool] enum for Cornell APIs.

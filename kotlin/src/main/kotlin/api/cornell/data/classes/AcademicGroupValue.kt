@@ -1,4 +1,4 @@
-package api.cornell.data
+package api.cornell.data.classes
 
 /**
  * [AcademicGroupValue] is a collection of supported academic group value.

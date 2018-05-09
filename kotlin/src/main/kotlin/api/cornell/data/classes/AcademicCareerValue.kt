@@ -1,4 +1,4 @@
-package api.cornell.data
+package api.cornell.data.classes
 
 /**
  * [AcademicCareerValue] is a collection of supported academic career value.

@@ -1,4 +1,4 @@
-package api.cornell.data
+package api.cornell.data.classes
 
 /**
  * [SubjectValue] is a collection of supported subjects value.

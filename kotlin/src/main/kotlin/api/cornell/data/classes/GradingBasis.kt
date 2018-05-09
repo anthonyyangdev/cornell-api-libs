@@ -1,4 +1,4 @@
-package api.cornell.data
+package api.cornell.data.classes
 
 /**
  * [GradingBasis] is a collection of supported grading basis.

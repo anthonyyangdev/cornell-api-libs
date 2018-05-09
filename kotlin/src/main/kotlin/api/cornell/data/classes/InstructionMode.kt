@@ -1,4 +1,4 @@
-package api.cornell.data
+package api.cornell.data.classes
 
 /**
  * [InstructionMode] is a collection of supported instruction modes.

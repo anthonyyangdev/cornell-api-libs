@@ -1,28 +1,28 @@
 package api.cornell
 
-import api.cornell.data.AcademicCareer
-import api.cornell.data.AcademicCareerValue
-import api.cornell.response.AcademicCareersResponse
-import api.cornell.data.AcademicGroup
-import api.cornell.data.AcademicGroupValue
-import api.cornell.response.AcademicGroupsResponse
-import api.cornell.data.ClassLevel
-import api.cornell.response.ClassLevelsResponse
-import api.cornell.response.CoursesResponse
-import api.cornell.data.Course
-import api.cornell.data.Roster
-import api.cornell.response.RostersResponse
-import api.cornell.data.Subject
-import api.cornell.data.SubjectValue
-import api.cornell.response.SubjectsResponse
+import api.cornell.data.classes.AcademicCareer
+import api.cornell.data.classes.AcademicCareerValue
+import api.cornell.response.classes.AcademicCareersResponse
+import api.cornell.data.classes.AcademicGroup
+import api.cornell.data.classes.AcademicGroupValue
+import api.cornell.response.classes.AcademicGroupsResponse
+import api.cornell.data.classes.ClassLevel
+import api.cornell.response.classes.ClassLevelsResponse
+import api.cornell.response.classes.CoursesResponse
+import api.cornell.data.classes.Course
+import api.cornell.data.classes.Roster
+import api.cornell.response.classes.RostersResponse
+import api.cornell.data.classes.Subject
+import api.cornell.data.classes.SubjectValue
+import api.cornell.response.classes.SubjectsResponse
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.google.gson.Gson
 
 /**
- * [ApiClient] defines a set of operation that the Cornell API Client supports.
+ * [ClassesApiClient] defines a set of operation that the Cornell API Client supports.
  */
-object ApiClient {
+object ClassesApiClient {
 
     /**
      * [PREFIX] is the URL prefix for API requests.

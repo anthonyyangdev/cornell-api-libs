@@ -1,6 +1,6 @@
-package api.cornell.response
+package api.cornell.response.classes
 
-import api.cornell.data.Subject
+import api.cornell.data.classes.Subject
 
 /**
  * [SubjectsResponse] is the response of a Subjects request.

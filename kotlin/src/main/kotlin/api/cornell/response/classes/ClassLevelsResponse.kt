@@ -1,6 +1,6 @@
-package api.cornell.response
+package api.cornell.response.classes
 
-import api.cornell.data.ClassLevel
+import api.cornell.data.classes.ClassLevel
 
 /**
  * [ClassLevelsResponse] is the response of a Class Levels request.

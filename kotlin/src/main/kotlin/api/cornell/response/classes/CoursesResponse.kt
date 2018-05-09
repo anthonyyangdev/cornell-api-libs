@@ -1,6 +1,6 @@
-package api.cornell.response
+package api.cornell.response.classes
 
-import api.cornell.data.Course
+import api.cornell.data.classes.Course
 import com.google.gson.annotations.SerializedName
 
 /**

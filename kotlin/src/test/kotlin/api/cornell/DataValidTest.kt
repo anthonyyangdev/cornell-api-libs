@@ -1,12 +1,12 @@
 package api.cornell
 
-import api.cornell.data.AcademicCareer
-import api.cornell.data.AcademicGroup
-import api.cornell.data.ClassLevel
-import api.cornell.data.Course
-import api.cornell.data.Roster
-import api.cornell.data.Subject
-import api.cornell.data.SubjectValue
+import api.cornell.data.classes.AcademicCareer
+import api.cornell.data.classes.AcademicGroup
+import api.cornell.data.classes.ClassLevel
+import api.cornell.data.classes.Course
+import api.cornell.data.classes.Roster
+import api.cornell.data.classes.Subject
+import api.cornell.data.classes.SubjectValue
 import org.junit.*
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.atomic.AtomicReference
@@ -16,12 +16,15 @@ import java.util.concurrent.atomic.AtomicReference
  */
 class DataValidTest {
 
+    /**
+     * Test the validity of data from [ClassesApiClient]
+     */
     @Test
-    fun validityTest() {
+    fun classApiClientValidityTest() {
         val allItems = ArrayList<String?>(1 shl 10)
         val latch = CountDownLatch(1)
         val rostersVar = AtomicReference<List<Roster>?>()
-        ApiClient.getRosters {
+        ClassesApiClient.getRosters {
             rostersVar.set(it)
             latch.countDown()
         }
@@ -39,23 +42,23 @@ class DataValidTest {
             val classLevelsVar = AtomicReference<List<ClassLevel>?>()
             val subjectsVar = AtomicReference<List<Subject>?>()
             val coursesVar = AtomicReference<List<Course>?>()
-            ApiClient.getAcademicCareers(roster = semester) {
+            ClassesApiClient.getAcademicCareers(roster = semester) {
                 careersVar.set(it)
                 latch1.countDown()
             }
-            ApiClient.getAcademicGroups(roster = semester) {
+            ClassesApiClient.getAcademicGroups(roster = semester) {
                 groupsVar.set(it)
                 latch1.countDown()
             }
-            ApiClient.getClassLevels(roster = semester) {
+            ClassesApiClient.getClassLevels(roster = semester) {
                 classLevelsVar.set(it)
                 latch1.countDown()
             }
-            ApiClient.getSubjects(roster = semester) {
+            ClassesApiClient.getSubjects(roster = semester) {
                 subjectsVar.set(it)
                 latch1.countDown()
             }
-            ApiClient.getCourses(roster = semester, subject = SubjectValue.CS) {
+            ClassesApiClient.getCourses(roster = semester, subject = SubjectValue.CS) {
                 coursesVar.set(it)
                 latch1.countDown()
             }

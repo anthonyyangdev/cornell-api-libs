@@ -1,4 +1,4 @@
-package api.cornell.data
+package api.cornell.data.classes
 
 /**
  * [AcademicCareer] contains all the useful information about academic careers.

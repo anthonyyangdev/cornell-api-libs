@@ -1,6 +1,6 @@
-package api.cornell.response
+package api.cornell.response.classes
 
-import api.cornell.data.Roster
+import api.cornell.data.classes.Roster
 
 /**
  * [RostersResponse] is the response of a Rosters request.

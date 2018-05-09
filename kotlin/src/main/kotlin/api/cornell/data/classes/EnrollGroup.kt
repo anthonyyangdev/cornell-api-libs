@@ -1,4 +1,4 @@
-package api.cornell.data
+package api.cornell.data.classes
 
 import com.google.gson.annotations.SerializedName
 
