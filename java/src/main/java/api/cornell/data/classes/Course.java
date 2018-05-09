@@ -1,5 +1,6 @@
 package api.cornell.data.classes;
 
+import com.google.common.base.MoreObjects;
 import com.google.gson.annotations.SerializedName;
 import org.jetbrains.annotations.NotNull;
 
@@ -377,30 +378,29 @@ public final class Course {
     
     @Override
     public String toString() {
-        /*
-         * semesterCode
-         * courseId
-         * courseOfferNumber
-         * subject
-         * catalogNumber
-         * shortTitle
-         * longTitle
-         * description
-         * catalogBreadth
-         * catalogDistribution
-         * catalogLanguage
-         * catalogForbiddenOverlaps
-         * catalogWhenOffered
-         * catalogComments
-         * catalogPrerequisitesCorequisites
-         * catalogFee
-         * catalogSatisfiesRequisite
-         * catalogPermission
-         * catalogCourseSubfield
-         * academicCareer
-         * academicGroup
-         * enrollGroups
-         */
-        return super.toString();
+        return MoreObjects.toStringHelper(this)
+                .add("semesterCode", semesterCode)
+                .add("courseId", courseId)
+                .add("courseOfferNumber", courseOfferNumber)
+                .add("subject", subject)
+                .add("catalogNumber", catalogNumber)
+                .add("shortTitle", shortTitle)
+                .add("longTitle", longTitle)
+                .add("description", description)
+                .add("catalogBreadth", catalogBreadth)
+                .add("catalogDistribution", catalogDistribution)
+                .add("catalogLanguage", catalogLanguage)
+                .add("catalogForbiddenOverlaps", catalogForbiddenOverlaps)
+                .add("catalogWhenOffered", catalogWhenOffered)
+                .add("catalogComments", catalogComments)
+                .add("catalogPrerequisitesCorequisites", catalogPrerequisitesCorequisites)
+                .add("catalogFee", catalogFee)
+                .add("catalogSatisfiesRequisite", catalogSatisfiesRequisite)
+                .add("catalogPermission", catalogPermission)
+                .add("catalogCourseSubfield", catalogCourseSubfield)
+                .add("academicCareer", academicCareer)
+                .add("academicGroup", academicGroup)
+                .add("enrollGroups", enrollGroups)
+                .toString();
     }
 }

@@ -23,7 +23,7 @@ public final class DiningApiClient {
     /**
      * Used for JSON processing.
      */
-    private static Gson GSON = new GsonBuilder()
+    private static final Gson GSON = new GsonBuilder()
             .registerTypeAdapter(EateryType.class, (JsonDeserializer<EateryType>) (j, $1, $2) -> {
                 String value;
                 if (j.isJsonObject()) {

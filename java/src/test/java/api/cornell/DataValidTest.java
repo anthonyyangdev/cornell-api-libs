@@ -1,5 +1,11 @@
 package api.cornell;
 
+import api.cornell.data.classes.AcademicCareer;
+import api.cornell.data.classes.AcademicGroup;
+import api.cornell.data.classes.ClassLevel;
+import api.cornell.data.classes.Course;
+import api.cornell.data.classes.Roster;
+import api.cornell.data.classes.Subject;
 import api.cornell.data.eatery.Eatery;
 import api.cornell.data.eatery.Page;
 import org.junit.Test;
@@ -8,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
 
 import static junit.framework.TestCase.fail;
 
@@ -22,75 +29,89 @@ public class DataValidTest {
     @Test
     public void classApiClientValidityTest() throws InterruptedException {
         List<String> allItems = new ArrayList<>(1 << 10);
-        /*
-        val latch = CountDownLatch(1)
-        val rostersVar = AtomicReference<List<Roster>?>()
-        ClassesApiClient.getRosters {
-            rostersVar.set(it)
-            latch.countDown()
+        CountDownLatch latch = new CountDownLatch(1);
+        AtomicReference<List<Roster>> rostersVar = new AtomicReference<>();
+        ClassesApiClient client = ClassesApiClient.getInstance();
+        client.getRosters(it -> {
+            rostersVar.set(it);
+            latch.countDown();
+        });
+        latch.await();
+        List<Roster> rosters = rostersVar.get();
+        if (rosters == null) {
+            fail();
+            return;
         }
-        latch.await()
-        val rosters = rostersVar.get() ?: throw Error()
-        for (roster in rosters) {
-            allItems.add(roster.toString())
-            val semester = roster.semester
+        for (Roster roster : rosters) {
+            allItems.add(roster.toString());
+            String semester = roster.getSemester();
             if (!semester.contains("FA") && !semester.contains("SP")) {
-                continue
+                continue;
             }
-            val latch1 = CountDownLatch(5)
-            val careersVar = AtomicReference<List<AcademicCareer>?>()
-            val groupsVar = AtomicReference<List<AcademicGroup>?>()
-            val classLevelsVar = AtomicReference<List<ClassLevel>?>()
-            val subjectsVar = AtomicReference<List<Subject>?>()
-            val coursesVar = AtomicReference<List<Course>?>()
-            ClassesApiClient.getAcademicCareers(roster = semester) {
-                careersVar.set(it)
-                latch1.countDown()
+            CountDownLatch latch1 = new CountDownLatch(5);
+            AtomicReference<List<AcademicCareer>> careersVar = new AtomicReference<>();
+            AtomicReference<List<AcademicGroup>> groupsVar = new AtomicReference<>();
+            AtomicReference<List<ClassLevel>> classLevelsVar = new AtomicReference<>();
+            AtomicReference<List<Subject>> subjectsVar = new AtomicReference<>();
+            AtomicReference<List<Course>> coursesVar = new AtomicReference<>();
+            client.getAcademicCareers(semester, it -> {
+                careersVar.set(it);
+                latch1.countDown();
+            });
+            client.getAcademicGroups(semester, it -> {
+                groupsVar.set(it);
+                latch1.countDown();
+            });
+            client.getClassLevels(semester, it -> {
+                classLevelsVar.set(it);
+                latch1.countDown();
+            });
+            client.getSubjects(semester, it -> {
+                subjectsVar.set(it);
+                latch1.countDown();
+            });
+            client.getCourses(semester, Subject.CS, it -> {
+                coursesVar.set(it);
+                latch1.countDown();
+            });
+            latch1.await();
+            List<AcademicCareer> careers = careersVar.get();
+            List<AcademicGroup> groups = groupsVar.get();
+            List<ClassLevel> classLevels = classLevelsVar.get();
+            List<Subject> subjects = subjectsVar.get();
+            List<Course> courses = coursesVar.get();
+            if (careers == null) {
+                fail();
+                return;
             }
-            ClassesApiClient.getAcademicGroups(roster = semester) {
-                groupsVar.set(it)
-                latch1.countDown()
+            if (groups == null) {
+                fail();
+                return;
             }
-            ClassesApiClient.getClassLevels(roster = semester) {
-                classLevelsVar.set(it)
-                latch1.countDown()
+            if (classLevels == null) {
+                fail();
+                return;
             }
-            ClassesApiClient.getSubjects(roster = semester) {
-                subjectsVar.set(it)
-                latch1.countDown()
+            if (subjects == null) {
+                fail();
+                return;
             }
-            ClassesApiClient.getCourses(roster = semester, subject = Subject.CS) {
-                coursesVar.set(it)
-                latch1.countDown()
+            if (courses == null) {
+                fail();
+                return;
             }
-            latch1.await()
-            val careers = careersVar.get() ?: throw Error()
-            val groups = groupsVar.get() ?: throw Error()
-            val classLevels = classLevelsVar.get() ?: throw Error()
-            val subjects = subjectsVar.get() ?: throw Error()
-            val courses = coursesVar.get() ?: throw Error()
-            for (item in careers) {
-                allItems.add(item.toString())
-            }
-            for (item in groups) {
-                allItems.add(item.toString())
-            }
-            for (item in classLevels) {
-                allItems.add(item.toString())
-            }
-            for (item in subjects) {
-                allItems.add(item.toString())
-            }
-            for (item in courses) {
-                allItems.add(item.toString())
-            }
+            Consumer<Object> c = it -> allItems.add(it.toString());
+            careers.forEach(c);
+            groups.forEach(c);
+            classLevels.forEach(c);
+            subjects.forEach(c);
+            courses.forEach(c);
         }
-        for (item in allItems) {
+        for (String item : allItems) {
             if (item == null) {
-                throw Error("Bad NULL!")
+                fail("Bad NULL!");
             }
         }
-        */
     }
     
     /**

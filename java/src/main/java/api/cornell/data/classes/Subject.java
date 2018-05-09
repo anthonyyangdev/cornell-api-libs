@@ -16,11 +16,11 @@ public enum Subject {
      */
     AIS("American Indian Studies"),
     /**
-     * Applied Economics & Management.
+     * Applied Economics &amp; Management.
      */
     AEM("Applied Economics & Management"),
     /**
-     * Applied & Engineering Physics.
+     * Applied &amp; Engineering Physics.
      */
     AEP("Applied & Engineering Physics"),
     /**
@@ -28,7 +28,7 @@ public enum Subject {
      */
     AGSCI("Agriculture Sciences"),
     /**
-     * American Indian & Indigenous.
+     * American Indian &amp; Indigenous.
      */
     AIIS("American Indian & Indigenous"),
     /**
@@ -40,7 +40,7 @@ public enum Subject {
      */
     AKKAD("Akkadian"),
     /**
-     * Agriculture & Life Sciences.
+     * Agriculture &amp; Life Sciences.
      */
     ALS("Agriculture & Life Sciences"),
     /**
@@ -76,7 +76,7 @@ public enum Subject {
      */
     ARTH("Art History"),
     /**
-     * Arts & Sciences.
+     * Arts &amp; Sciences.
      */
     AS("Arts & Sciences"),
     /**
@@ -84,7 +84,7 @@ public enum Subject {
      */
     ASIAN("Asian Studies"),
     /**
-     * Africana Studies & Res Center.
+     * Africana Studies &amp; Res Center.
      */
     ASRC("Africana Studies & Res Center"),
     /**
@@ -96,7 +96,7 @@ public enum Subject {
      */
     BCS("Bosnian, Croatian, Serbian"),
     /**
-     * Biological & Environmental Eng.
+     * Biological &amp; Environmental Eng.
      */
     BEE("Biological & Environmental Eng"),
     /**
@@ -104,11 +104,11 @@ public enum Subject {
      */
     BENGL("Bengali"),
     /**
-     * Animal Physiology & Anatomy.
+     * Animal Physiology &amp; Anatomy.
      */
     BIOAP("Animal Physiology & Anatomy"),
     /**
-     * Ecology & Evolutionary Biology.
+     * Ecology &amp; Evolutionary Biology.
      */
     BIOEE("Ecology & Evolutionary Biology"),
     /**
@@ -132,7 +132,7 @@ public enum Subject {
      */
     BIOPL("Plant Biology"),
     /**
-     * Neurobiology & Behavior.
+     * Neurobiology &amp; Behavior.
      */
     BIONB("Neurobiology & Behavior"),
     /**
@@ -144,11 +144,11 @@ public enum Subject {
      */
     BPRE("Baker Program in Real Estate"),
     /**
-     * Biology & Society.
+     * Biology &amp; Society.
      */
     BSOC("Biology & Society"),
     /**
-     * Biometry & Statistics.
+     * Biometry &amp; Statistics.
      */
     BTRY("Biometry & Statistics"),
     /**
@@ -156,11 +156,11 @@ public enum Subject {
      */
     BURM("Burmese"),
     /**
-     * China & Asia Pacific Studies.
+     * China &amp; Asia Pacific Studies.
      */
     CAPS("China & Asia Pacific Studies"),
     /**
-     * Civil & Environmental Engr.
+     * Civil &amp; Environmental Engr.
      */
     CEE("Civil & Environmental Engr"),
     /**
@@ -200,7 +200,7 @@ public enum Subject {
      */
     COMM("Communication"),
     /**
-     * City & Regional Planning.
+     * City &amp; Regional Planning.
      */
     CRP("City & Regional Planning"),
     /**
@@ -208,7 +208,7 @@ public enum Subject {
      */
     CS("Computer Science"),
     /**
-     * Crop & Soil Sciences.
+     * Crop &amp; Soil Sciences.
      */
     CSS("Crop & Soil Sciences"),
     /**
@@ -216,7 +216,7 @@ public enum Subject {
      */
     CZECH("Czech"),
     /**
-     * Design & Environmental Analy.
+     * Design &amp; Environmental Analy.
      */
     DEA("Design & Environmental Analy"),
     /**
@@ -228,11 +228,11 @@ public enum Subject {
      */
     DUTCH("Dutch"),
     /**
-     * Earth & Atmospheric Sciences.
+     * Earth &amp; Atmospheric Sciences.
      */
     EAS("Earth & Atmospheric Sciences"),
     /**
-     * Electrical & Computer Engineering.
+     * Electrical &amp; Computer Engineering.
      */
     ECE("Electrical & Computer Engineering"),
     /**
@@ -296,7 +296,7 @@ public enum Subject {
      */
     FREN("French"),
     /**
-     * Fiber Science & Apparel Design.
+     * Fiber Science &amp; Apparel Design.
      */
     FSAD("Fiber Science & Apparel Design"),
     /**
@@ -348,7 +348,7 @@ public enum Subject {
      */
     HUNGR("Hungarian"),
     /**
-     * Intl Agriculture & Rural Dev.
+     * Intl Agriculture &amp; Rural Dev.
      */
     IARD("Intl Agriculture & Rural Dev"),
     /**
@@ -356,7 +356,7 @@ public enum Subject {
      */
     ILRHR("ILR Human Resource Management"),
     /**
-     * ILR International & Comp Labor.
+     * ILR International &amp; Comp Labor.
      */
     ILRIC("ILR International & Comp Labor"),
     /**
@@ -456,7 +456,7 @@ public enum Subject {
      */
     LSP("Latino Studies Program"),
     /**
-     * Mechanical & Aerospace Eng.
+     * Mechanical &amp; Aerospace Eng.
      */
     MAE("Mechanical & Aerospace Eng"),
     /**
@@ -476,7 +476,7 @@ public enum Subject {
      */
     MOGRK("Modern Greek"),
     /**
-     * Materials Science & Engr.
+     * Materials Science &amp; Engr.
      */
     MSE("Materials Science & Engr"),
     /**
@@ -544,7 +544,7 @@ public enum Subject {
      */
     NS("Nutritional Science"),
     /**
-     * Nuclear Science & Engineering.
+     * Nuclear Science &amp; Engineering.
      */
     NSE("Nuclear Science & Engineering"),
     /**
@@ -552,7 +552,7 @@ public enum Subject {
      */
     NTRES("Natural Resources"),
     /**
-     * Op Research & Information Engr.
+     * Op Research &amp; Information Engr.
      */
     ORIE("Op Research & Information Engr"),
     /**
@@ -564,11 +564,11 @@ public enum Subject {
      */
     PALI("Pali"),
     /**
-     * Policy Analysis & Management.
+     * Policy Analysis &amp; Management.
      */
     PAM("Policy Analysis & Management"),
     /**
-     * Physical Education & Athletics.
+     * Physical Education &amp; Athletics.
      */
     PE("Physical Education & Athletics"),
     /**
@@ -612,7 +612,7 @@ public enum Subject {
      */
     PLSCI("Plant Sciences"),
     /**
-     * Soil & Crop Sciences.
+     * Soil &amp; Crop Sciences.
      */
     PLSCS("Soil & Crop Sciences"),
     /**
@@ -672,7 +672,7 @@ public enum Subject {
      */
     SINHA("Sinhalese"),
     /**
-     * Science of Natural & Envir Sys.
+     * Science of Natural &amp; Envir Sys.
      */
     SNES("Science of Natural & Envir Sys"),
     /**
@@ -688,7 +688,7 @@ public enum Subject {
      */
     SPAN("Spanish"),
     /**
-     * Science & Technology Studies.
+     * Science &amp; Technology Studies.
      */
     STS("Science & Technology Studies"),
     /**
@@ -716,7 +716,7 @@ public enum Subject {
      */
     TAMIL("Tamil"),
     /**
-     * Digital Technology & Practice.
+     * Digital Technology &amp; Practice.
      */
     TECH("Digital Technology & Practice"),
     /**
@@ -776,7 +776,7 @@ public enum Subject {
      */
     VTMED("Vet Med Professional Curriculm"),
     /**
-     * Population Med&Diagnostic Svc.
+     * Population Med &amp; Diagnostic Svc.
      */
     VTPMD("Population Med&Diagnostic Svc"),
     /**

@@ -14,7 +14,7 @@ import com.google.gson.annotations.SerializedName
  * @param defaultCampus the default campus.
  * @param defaultLocation the default location.
  * @param sharing whether you can share.
- * @param isInArchiveMode whether the semester's info is in archive move.
+ * @param isInArchiveMode whether the semester's info is in archive mode.
  * @param lastModifiedDatetime a datetime stamp of the last modified date time.
  */
 data class Roster(
