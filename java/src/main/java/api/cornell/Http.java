@@ -6,16 +6,17 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.async.Callback;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import com.mashape.unirest.request.GetRequest;
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.logging.LogManager;
 
 /**
  * {@code Http} is used for providing support for API access.
  */
-class Http {
+final class Http {
     
     /**
      * Prefix prefix for URL.
@@ -25,6 +26,11 @@ class Http {
      * Gson used for data deserialization.
      */
     private final Gson gson;
+    
+    static {
+        // Suppress loggers.
+        LogManager.getLogManager().reset();
+    }
     
     /**
      * Construct an {@code Http} object.
@@ -59,17 +65,20 @@ class Http {
      */
     <T> void request(@NotNull String path, @Nullable Map<String, Object> parameters,
                      @NotNull Class<T> type, @NotNull Consumer<T> handler) {
-        GetRequest request = Unirest.get(prefix + path);
-        parameters.forEach((key, value) -> {
-            if (value instanceof Object[]) {
-                Object[] values = (Object[]) value;
-                for (Object v : values) {
-                    request.queryString(key, v);
+        GetRequest request = Unirest.get(prefix + path)
+                .header("WhoIsMe", "CornellApiClientLibrary");
+        if (parameters != null) {
+            parameters.forEach((key, value) -> {
+                if (value instanceof Object[]) {
+                    Object[] values = (Object[]) value;
+                    for (Object v : values) {
+                        request.queryString(key, v);
+                    }
+                } else {
+                    request.queryString(key, value);
                 }
-            } else {
-                request.queryString(key, value);
-            }
-        });
+            });
+        }
         request.asStringAsync(new Callback<String>() {
             @Override
             public void completed(HttpResponse<String> response) {
@@ -77,12 +86,12 @@ class Http {
                 T value = gson.fromJson(body, type);
                 handler.accept(value);
             }
-    
+            
             @Override
             public void failed(UnirestException e) {
                 handler.accept(null);
             }
-    
+            
             @Override
             public void cancelled() {
                 handler.accept(null);

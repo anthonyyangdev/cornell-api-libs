@@ -1,9 +1,15 @@
 package api.cornell;
 
+import api.cornell.data.eatery.Eatery;
+import api.cornell.data.eatery.Page;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicReference;
+
+import static junit.framework.TestCase.fail;
 
 /**
  * {@code DataValidTest} ensures that all the data are valid.
@@ -14,7 +20,7 @@ public class DataValidTest {
      * Test the validity of data from [ClassesApiClient]
      */
     @Test
-    public void classApiClientValidityTest() {
+    public void classApiClientValidityTest() throws InterruptedException {
         List<String> allItems = new ArrayList<>(1 << 10);
         /*
         val latch = CountDownLatch(1)
@@ -91,35 +97,42 @@ public class DataValidTest {
      * Test the validity of data from {@code DiningApiClient}.
      */
     @Test
-    public void diningApiClientValidityTest() {
+    public void diningApiClientValidityTest() throws InterruptedException {
         List<String> allItems = new ArrayList<>(1 << 10);
-        /*
-        val latch = CountDownLatch(2)
-        val pagesVar = AtomicReference<List<Page>?>()
-        val eateriesVar = AtomicReference<List<Eatery>?>()
-        DiningApiClient.getPages {
-            pagesVar.set(it)
-            latch.countDown()
+        CountDownLatch latch = new CountDownLatch(2);
+        AtomicReference<List<Page>> pagesVar = new AtomicReference<>();
+        AtomicReference<List<Eatery>> eateriesVar = new AtomicReference<>();
+        DiningApiClient client = DiningApiClient.getInstance();
+        client.getPages(it -> {
+            pagesVar.set(it);
+            latch.countDown();
+        });
+        client.getEateries(it -> {
+            eateriesVar.set(it);
+            latch.countDown();
+        });
+        latch.await();
+        List<Page> pages = pagesVar.get();
+        if (pages == null) {
+            fail();
+            return;
         }
-        DiningApiClient.getEateries {
-            eateriesVar.set(it)
-            latch.countDown()
+        List<Eatery> eateries = eateriesVar.get();
+        if (eateries == null) {
+            fail();
+            return;
         }
-        latch.await()
-        val pages = pagesVar.get() ?: throw Error()
-        val eateries = eateriesVar.get() ?: throw Error()
-        for (item in pages) {
-            allItems.add(item.toString())
+        for (Page page : pages) {
+            allItems.add(page.toString());
         }
-        for (item in eateries) {
-            allItems.add(item.toString())
+        for (Eatery eatery : eateries) {
+            allItems.add(eatery.toString());
         }
-        for (item in allItems) {
+        for (String item : allItems) {
             if (item == null) {
-                throw Error("Bad NULL!")
+                fail("Bad NULL!");
             }
         }
-        */
     }
     
 }

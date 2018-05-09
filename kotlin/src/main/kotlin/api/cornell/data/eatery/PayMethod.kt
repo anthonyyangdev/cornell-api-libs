@@ -48,7 +48,7 @@ enum class PayMethod(val description: String) {
          *
          * @param str string candidate.
          * @return corresponding [PayMethod].
-         * @throws NoSuchElementException if there is no such [PayMethod]
+         * @throws NoSuchElementException if there is no such [PayMethod].
          */
         fun fromString(str: String): PayMethod = map[str] ?: throw NoSuchElementException()
     }

@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
  * @param body body content of the page.
  * @param updatedDatetime last updated date time.
  * @param navInclude whether the page is included in the nav bar.
- * @param navSortIdx Index in the nav bar.
+ * @param navSortIdx index in the nav bar.
  */
 data class Page(
         @SerializedName(value = "slug") val path: String,

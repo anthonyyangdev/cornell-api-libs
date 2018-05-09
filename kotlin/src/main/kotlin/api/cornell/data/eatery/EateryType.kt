@@ -12,27 +12,27 @@ enum class EateryType(val description: String) {
     /**
      * All You Care To Eat Dining Room.
      */
-    ALL_YOU_CARE_TO_EAT("All You Care To Eat Dining Room"),
+    ALL_YOU_CARE_TO_EAT(description = "All You Care To Eat Dining Room"),
     /**
      * Cafe.
      */
-    CAFE("Cafe"),
+    CAFE(description = "Cafe"),
     /**
      * Coffee shop.
      */
-    COFFEE_SHOP("Coffee Shop"),
+    COFFEE_SHOP(description = "Coffee Shop"),
     /**
      * Convenience store.
      */
-    CONVENIENCE_STORE("Convenience Store"),
+    CONVENIENCE_STORE(description = "Convenience Store"),
     /**
      * Cart.
      */
-    CART("Cart"),
+    CART(description = "Cart"),
     /**
      * Food court.
      */
-    FOOD_COURT("Food Court"), ;
+    FOOD_COURT(description = "Food Court");
 
     /**
      * @see [Any]
@@ -50,11 +50,11 @@ enum class EateryType(val description: String) {
                 .collect(Collectors.toMap({ it.description }, { it }))
 
         /**
-         * [fromString] converts a string to a [EateryType]
+         * [fromString] converts a string to a [EateryType].
          *
          * @param str string candidate.
          * @return corresponding [EateryType].
-         * @throws NoSuchElementException if there is no such [EateryType]
+         * @throws NoSuchElementException if there is no such [EateryType],
          */
         fun fromString(str: String): EateryType = map[str] ?: throw NoSuchElementException()
     }
