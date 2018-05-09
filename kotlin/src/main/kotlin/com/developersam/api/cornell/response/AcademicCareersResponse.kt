@@ -1,6 +1,7 @@
 package com.developersam.api.cornell.response
 
 import com.developersam.api.cornell.data.AcademicCareer
+import com.google.gson.annotations.SerializedName
 
 /**
  * [AcademicCareersResponse] is the response of a Academic Careers request.
@@ -21,6 +22,7 @@ internal class AcademicCareersResponse private constructor() {
      * [Data] is an uninteresting class that just holds an array of [AcademicCareer].
      */
     private inner class Data private constructor() {
+        @SerializedName(value = "acadCareers")
         val academicCareers: List<AcademicCareer>? = null
     }
 

@@ -13,6 +13,7 @@ import com.developersam.api.cornell.data.Course
 import com.developersam.api.cornell.data.Roster
 import com.developersam.api.cornell.response.RostersResponse
 import com.developersam.api.cornell.data.Subject
+import com.developersam.api.cornell.data.SubjectValue
 import com.developersam.api.cornell.response.SubjectsResponse
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
@@ -35,14 +36,6 @@ internal object ApiClient {
     private val gson: Gson = Gson()
 
     /**
-     * [InputStream.toClass] conveniently converts the [InputStream] to a class with type [clazz].
-     */
-    private fun <T> InputStream.toClass(clazz: Class<T>): T {
-        val reader = InputStreamReader(this)
-        return gson.fromJson(reader, clazz)
-    }
-
-    /**
      * [request] is a function that fetch the result from Cornell APIs without the prefix.
      *
      * @param path API path without prefix.
@@ -52,9 +45,10 @@ internal object ApiClient {
     private inline fun <reified T> request(path: String,
                                            parameters: List<Pair<String, Any?>>? = null,
                                            crossinline handler: (T?) -> Unit) {
-        (PREFIX + path).httpGet(parameters = parameters).response { _, response, result ->
+        val url = PREFIX + path
+        url.httpGet(parameters = parameters).responseString { _, _, result ->
             when (result) {
-                is Result.Success -> handler(response.dataStream.toClass(T::class.java))
+                is Result.Success -> handler(gson.fromJson(result.value, T::class.java))
                 is Result.Failure -> handler(null)
             }
         }
@@ -126,7 +120,7 @@ internal object ApiClient {
      * @param handler handler to receive all classes in the specified roster and subject that match
      * the input query.
      */
-    fun getCourses(roster: String, subject: Subject, handler: (List<Course>?) -> Unit) =
+    fun getCourses(roster: String, subject: SubjectValue, handler: (List<Course>?) -> Unit) =
             getCourses(roster, subject, null, null,
                     null, null, null, handler)
 
@@ -143,7 +137,7 @@ internal object ApiClient {
      * @param handler handler to receive all classes in the specified roster and subject that match
      * the input query.
      */
-    fun getCourses(roster: String, subject: Subject,
+    fun getCourses(roster: String, subject: SubjectValue,
                    academicCareers: Array<AcademicCareerValue>?,
                    academicGroups: Array<AcademicGroupValue>?,
                    classLevels: IntArray?, classAttributes: Array<String>?,
@@ -172,7 +166,13 @@ internal object ApiClient {
         }
         query?.let { params.add("q" to it) }
         request<CoursesResponse>(path = "/search/classes.json", parameters = params) {
-            handler(it?.courses)
+            val courses = it?.courses
+            if (courses == null) {
+                println("ITTT:")
+                println()
+                println(it)
+            }
+            handler(courses)
         }
     }
 
