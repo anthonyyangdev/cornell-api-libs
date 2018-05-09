@@ -10,18 +10,18 @@ internal class AcademicCareersResponse private constructor() {
     /**
      * Main data of response.
      */
-    private lateinit var data: Data
+    private val data: Data? = null
     /**
      * Obtain the academic careers information.
      */
-    val academicCareers: List<AcademicCareer>
-        get() = data.academicCareers
+    val academicCareers: List<AcademicCareer>?
+        get() = data?.academicCareers
 
     /**
      * [Data] is an uninteresting class that just holds an array of [AcademicCareer].
      */
     private inner class Data private constructor() {
-        lateinit var academicCareers: List<AcademicCareer>
+        val academicCareers: List<AcademicCareer>? = null
     }
 
 }

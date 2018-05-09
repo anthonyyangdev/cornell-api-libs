@@ -10,18 +10,18 @@ internal class SubjectsResponse private constructor() {
     /**
      * Main data of response.
      */
-    private lateinit var data: Data
+    private val data: Data? = null
     /**
      * Obtain the class levels information.
      */
-    val subjects: List<Subject>
-        get() = data.subjects
+    val subjects: List<Subject>?
+        get() = data?.subjects
 
     /**
      * [Data] is an uninteresting class that just holds an array of [ClassLevel].
      */
     private inner class Data private constructor() {
-        lateinit var subjects: List<Subject>
+        val subjects: List<Subject>? = null
     }
 
 }

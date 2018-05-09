@@ -10,18 +10,18 @@ internal class AcademicGroupsResponse private constructor() {
     /**
      * Main data of response.
      */
-    private lateinit var data: Data
+    private val data: Data? = null
     /**
      * Obtain the academic groups information.
      */
-    val academicGroups: List<AcademicGroup>
-        get() = data.academicGroups
+    val academicGroups: List<AcademicGroup>?
+        get() = data?.academicGroups
 
     /**
      * [Data] is an uninteresting class that just holds an array of [AcademicGroup].
      */
     private inner class Data private constructor() {
-        lateinit var academicGroups: List<AcademicGroup>
+        val academicGroups: List<AcademicGroup>? = null
     }
 
 }
