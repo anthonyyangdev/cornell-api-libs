@@ -13,7 +13,7 @@ make sense of what's happening.
 ## Authors
 
 - Golang: `nil`
-- Java: `null`
+- Java: Sam
 - Javascript: `null`
 - Kotlin: Sam
 - Ocaml: `None`
