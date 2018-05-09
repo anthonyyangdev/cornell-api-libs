@@ -1,5 +1,3 @@
 # Cornell API Client Library in Kotlin
 
-```kotlin
-// TODO Finished, but without good docs
-```
+[Read the docs](https://docs.developersam.com/cornell-api-lib-kotlin/)
