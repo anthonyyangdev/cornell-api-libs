@@ -24,7 +24,7 @@ import java.io.InputStreamReader
 /**
  * [ApiClient] defines a set of operation that the Cornell API Client supports.
  */
-internal object ApiClient {
+object ApiClient {
 
     /**
      * [PREFIX] is the URL prefix for API requests.
