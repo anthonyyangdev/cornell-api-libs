@@ -12,9 +12,6 @@ make sense of what's happening.
 
 ## Authors
 
-- Golang: `nil`
 - Java: Sam
-- Javascript: `null`
 - Kotlin: Sam
-- Ocaml: `None`
 - Python: `None`
