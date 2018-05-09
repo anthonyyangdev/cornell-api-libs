@@ -28,82 +28,29 @@ internal class RostersResponse private constructor() {
 
 /**
  * [Roster] contains all the useful information about Cornell Roster.
+ *
+ * @param semester semester of the roster.
+ * @param isDefaultRoster whether the roster is the default one.
+ * @param semesterCode code of the semester.
+ * @param description a description of the semester.
+ * @param shortDescription a short description of the semester.
+ * @param defaultSessionCode the default session code.
+ * @param defaultCampus the default campus.
+ * @param defaultLocation the default location.
+ * @param sharing whether you can share.
+ * @param isInArchiveMode whether the semester's info is in archive move.
+ * @param lastModifiedDatetime a datetime stamp of the last modified date time.
  */
-class Roster private constructor() {
-
-    /**
-     * Semester of the roster.
-     */
-    @SerializedName(value = "slug")
-    lateinit var semester: String
-        private set
-
-    /**
-     * Whether the roster is the default one.
-     */
-    val isDefaultRoster: Bool = Bool.N
-
-    /**
-     * Code of the semester.
-     */
-    @SerializedName(value = "strm")
-    lateinit var semesterCode: String
-        private set
-
-    /**
-     * A description of the semester.
-     */
-    @SerializedName(value = "descr")
-    lateinit var description: String
-        private set
-
-    /**
-     * A short description of the semester.
-     */
-    @SerializedName(value = "descrshort")
-    lateinit var shortDescription: String
-        private set
-
-    /**
-     * The default session code.
-     */
-    lateinit var defaultSessionCode: String
-        private set
-
-    /**
-     * The default campus.
-     */
-    lateinit var defaultCampus: Campus
-        private set
-
-    /**
-     * The default location.
-     */
-    lateinit var defaultLocation: CampusLocation
-        private set
-
-    /**
-     * The default instruction mode.
-     */
-    lateinit var defaultInstructionMode: InstructionMode
-        private set
-
-    /**
-     * Whether you can share
-     */
-    val sharing: Bool = Bool.N
-
-    /**
-     * Whether the semester's info is in archieve move.
-     */
-    @SerializedName(value = "archiveMode")
-    val isInArchiveMode: Bool = Bool.N
-
-    /**
-     * A datetime stamp of the last modified date time.
-     */
-    @SerializedName(value = "lastModifiedDttm")
-    lateinit var lastModifiedDatetime: String
-        private set
-
-}
+data class Roster(
+        @SerializedName(value = "slug") val semester: String,
+        val isDefaultRoster: Bool,
+        @SerializedName(value = "strm") val semesterCode: String,
+        @SerializedName(value = "descr") val description: String,
+        @SerializedName(value = "descrshort") val shortDescription: String,
+        val defaultSessionCode: String,
+        val defaultCampus: Campus,
+        val defaultLocation: CampusLocation,
+        val sharing: Bool,
+        @SerializedName(value = "archiveMode") val isInArchiveMode: Bool,
+        @SerializedName(value = "lastModifiedDttm") val lastModifiedDatetime: String
+)

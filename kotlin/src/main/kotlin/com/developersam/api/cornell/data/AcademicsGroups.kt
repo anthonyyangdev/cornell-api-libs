@@ -1,7 +1,5 @@
 package com.developersam.api.cornell.data
 
-import com.google.gson.annotations.SerializedName
-
 /**
  * [AcademicGroupsResponse] is the response of a Academic Groups request.
  */
@@ -28,20 +26,7 @@ internal class AcademicGroupsResponse private constructor() {
 
 /**
  * [AcademicGroup] contains all the useful information about academic groups.
+ *
+ * @param value value of the academic group.
  */
-class AcademicGroup private constructor() {
-
-    /**
-     * Value of the academic group.
-     */
-    lateinit var value: AcademicGroupValue
-        private set
-
-    /**
-     * Text description of the value.
-     */
-    @SerializedName(value = "descr")
-    lateinit var description: String
-        private set
-
-}
+data class AcademicGroup(val value: AcademicGroupValue)

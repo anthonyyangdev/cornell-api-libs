@@ -1,7 +1,5 @@
 package com.developersam.api.cornell.data
 
-import com.google.gson.annotations.SerializedName
-
 /**
  * [SubjectsResponse] is the response of a Subjects request.
  */
@@ -28,27 +26,7 @@ internal class SubjectsResponse private constructor() {
 
 /**
  * [Subject] contains all the useful information about subjects.
+ *
+ * @param value value of the academic group.
  */
-class Subject private constructor() {
-
-    /**
-     * Value of the academic group.
-     */
-    lateinit var value: SubjectValue
-        private set
-
-    /**
-     * Text description of the value.
-     */
-    @SerializedName(value = "descr")
-    lateinit var description: String
-        private set
-
-    /**
-     * Formal Text description of the value.
-     */
-    @SerializedName(value = "descrformal")
-    lateinit var formalDescription: String
-        private set
-
-}
+data class Subject(val value: SubjectValue)

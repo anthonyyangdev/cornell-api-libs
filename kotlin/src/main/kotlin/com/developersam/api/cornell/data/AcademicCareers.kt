@@ -1,7 +1,5 @@
 package com.developersam.api.cornell.data
 
-import com.google.gson.annotations.SerializedName
-
 /**
  * [AcademicCareersResponse] is the response of a Academic Careers request.
  */
@@ -28,20 +26,7 @@ internal class AcademicCareersResponse private constructor() {
 
 /**
  * [AcademicCareer] contains all the useful information about academic careers.
+ *
+ * @param value value of the academic career.
  */
-class AcademicCareer private constructor() {
-
-    /**
-     * Value of the academic career.
-     */
-    lateinit var value: AcademicCareerValue
-        private set
-
-    /**
-     * Text description of the value.
-     */
-    @SerializedName(value = "descr")
-    lateinit var description: String
-        private set
-
-}
+data class AcademicCareer(val value: AcademicCareerValue)

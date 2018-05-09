@@ -28,20 +28,7 @@ internal class ClassLevelsResponse private constructor() {
 
 /**
  * [ClassLevel] contains all the useful information about class levels.
+ *
+ * @param value value of the academic group.
  */
-class ClassLevel private constructor() {
-
-    /**
-     * Text description of the value.
-     */
-    @SerializedName(value = "value")
-    lateinit var description: String
-        private set
-
-    /**
-     * Value of the academic group.
-     */
-    @SerializedName(value = "descr")
-    val value: Int = 0
-
-}
+data class ClassLevel(@SerializedName(value = "descr") val value: Int = 0)
