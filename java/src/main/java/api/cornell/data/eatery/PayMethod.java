@@ -1,5 +1,7 @@
 package api.cornell.data.eatery;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -38,6 +40,7 @@ public enum PayMethod {
     /**
      * A simple description of the method.
      */
+    @NotNull
     private final String description;
     
     /**
@@ -51,7 +54,7 @@ public enum PayMethod {
      *
      * @param description a simple description of the method.
      */
-    PayMethod(String description) {
+    PayMethod(@NotNull String description) {
         this.description = description;
     }
     
@@ -60,6 +63,7 @@ public enum PayMethod {
      *
      * @return the description of the method.
      */
+    @NotNull
     public String getDescription() {
         return description;
     }

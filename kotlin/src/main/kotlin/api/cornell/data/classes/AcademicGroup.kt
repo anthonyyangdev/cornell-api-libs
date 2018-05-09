@@ -9,43 +9,43 @@ enum class AcademicGroup(val description: String) {
     /**
      * Agriculture and Life Sciences.
      */
-    AG("Agriculture and Life Sciences"),
+    AG(description = "Agriculture and Life Sciences"),
     /**
      * Architecture, Art and Planning.
      */
-    AR("Architecture, Art and Planning"),
+    AR(description = "Architecture, Art and Planning"),
     /**
      * Arts and Sciences.
      */
-    AS("Arts and Sciences"),
+    AS(description = "Arts and Sciences"),
     /**
      * Athletics
      */
-    AT("Athletics"),
+    AT(description = "Athletics"),
     /**
      * Business.
      */
-    BU("Business"),
+    BU(description = "Business"),
     /**
      * Continuing Education.
      */
-    CE("Continuing Education"),
+    CE(description = "Continuing Education"),
     /**
      * Cornell Tech.
      */
-    CT("Cornell Tech"),
+    CT(description = "Cornell Tech"),
     /**
      * Engineering.
      */
-    EN("Engineering"),
+    EN(description = "Engineering"),
     /**
      * Graduate.
      */
-    GR("Graduate"),
+    GR(description = "Graduate"),
     /**
      * Graduate Management.
      */
-    GM("Graduate Management"),
+    GM(description = "Graduate Management"),
     /**
      * Hotel Administration.
      */
@@ -53,21 +53,21 @@ enum class AcademicGroup(val description: String) {
     /**
      * Human Ecology.
      */
-    HE("Human Ecology"),
+    HE(description = "Human Ecology"),
     /**
      * Industrial and Labor Relations.
      */
-    IL("Industrial and Labor Relations"),
+    IL(description = "Industrial and Labor Relations"),
     /**
      * Law.
      */
-    LA("Law"),
+    LA(description = "Law"),
     /**
      * Reserve Officer Training.
      */
-    OT("Reserve Officer Training"),
+    OT(description = description = "Reserve Officer Training"),
     /**
      * Veterinary Medicine.
      */
-    VM("Veterinary Medicine")
+    VM(description = "Veterinary Medicine")
 }

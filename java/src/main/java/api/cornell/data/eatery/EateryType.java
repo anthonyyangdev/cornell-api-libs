@@ -1,5 +1,7 @@
 package api.cornell.data.eatery;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -38,6 +40,7 @@ public enum EateryType {
     /**
      * A simple description of the type.
      */
+    @NotNull
     private final String description;
     /**
      * Mapping from description to value.
@@ -50,7 +53,7 @@ public enum EateryType {
      *
      * @param description a simple description of the type.
      */
-    EateryType(String description) {
+    EateryType(@NotNull String description) {
         this.description = description;
     }
     
@@ -59,6 +62,7 @@ public enum EateryType {
      *
      * @return the description of the type.
      */
+    @NotNull
     public String getDescription() {
         return description;
     }
