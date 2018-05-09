@@ -53,7 +53,7 @@ shadowJar {
 project.tasks.assemble.dependsOn project.tasks.shadowJar
 
 dokka {
-    outputFormat = 'html'
+    outputFormat = 'jekyll'
     outputDirectory = "../../docs"
     jdkVersion = 8
     skipDeprecated = false
