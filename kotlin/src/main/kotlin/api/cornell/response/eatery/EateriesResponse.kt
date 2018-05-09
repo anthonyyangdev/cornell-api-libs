@@ -5,7 +5,7 @@ import api.cornell.data.eatery.Eatery
 /**
  * [EateriesResponse] is the response of a Eateries request.
  */
-class EateriesResponse private constructor() {
+internal class EateriesResponse private constructor() {
 
     /**
      * Main data of response.

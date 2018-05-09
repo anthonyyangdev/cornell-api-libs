@@ -5,7 +5,7 @@ import api.cornell.data.eatery.Page
 /**
  * [PagesResponse] is the response of a Pages request.
  */
-class PagesResponse private constructor() {
+internal class PagesResponse private constructor() {
 
     /**
      * Main data of response.
