@@ -2,18 +2,18 @@ package com.developersam.api.cornell
 
 import com.developersam.api.cornell.data.AcademicCareer
 import com.developersam.api.cornell.data.AcademicCareerValue
-import com.developersam.api.cornell.data.AcademicCareersResponse
+import com.developersam.api.cornell.response.AcademicCareersResponse
 import com.developersam.api.cornell.data.AcademicGroup
 import com.developersam.api.cornell.data.AcademicGroupValue
-import com.developersam.api.cornell.data.AcademicGroupsResponse
+import com.developersam.api.cornell.response.AcademicGroupsResponse
 import com.developersam.api.cornell.data.ClassLevel
-import com.developersam.api.cornell.data.ClassLevelsResponse
-import com.developersam.api.cornell.data.ClassesResponse
+import com.developersam.api.cornell.response.ClassLevelsResponse
+import com.developersam.api.cornell.response.CoursesResponse
 import com.developersam.api.cornell.data.Course
 import com.developersam.api.cornell.data.Roster
-import com.developersam.api.cornell.data.RostersResponse
+import com.developersam.api.cornell.response.RostersResponse
 import com.developersam.api.cornell.data.Subject
-import com.developersam.api.cornell.data.SubjectsResponse
+import com.developersam.api.cornell.response.SubjectsResponse
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.google.gson.Gson
@@ -171,7 +171,7 @@ internal object ApiClient {
             }
         }
         query?.let { params.add("q" to it) }
-        request<ClassesResponse>(path = "/search/classes.json", parameters = params) {
+        request<CoursesResponse>(path = "/search/classes.json", parameters = params) {
             handler(it?.courses)
         }
     }
