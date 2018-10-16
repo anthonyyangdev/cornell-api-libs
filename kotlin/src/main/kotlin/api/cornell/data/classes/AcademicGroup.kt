@@ -65,7 +65,7 @@ enum class AcademicGroup(val description: String) {
     /**
      * Reserve Officer Training.
      */
-    OT(description = description = "Reserve Officer Training"),
+    OT(description = "Reserve Officer Training"),
     /**
      * Veterinary Medicine.
      */

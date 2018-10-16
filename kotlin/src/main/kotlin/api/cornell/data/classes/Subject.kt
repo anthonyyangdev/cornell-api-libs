@@ -467,6 +467,10 @@ enum class Subject(val description: String) {
      */
     MEDVL(description = "Medieval Studies"),
     /**
+     * Graduate Management.
+     */
+    MGMT(description = "Graduate Management"),
+    /**
      * Military Science.
      */
     MILS(description = "Military Science"),
