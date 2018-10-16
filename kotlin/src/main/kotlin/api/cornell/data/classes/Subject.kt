@@ -797,5 +797,10 @@ enum class Subject(val description: String) {
     /**
      * Zulu.
      */
-    ZULU(description = "Zulu")
+    ZULU(description = "Zulu"),
+    /**
+     * Unknown class as a placeholder.
+     */
+    UNKNOWN(description = "Unknown"),
+
 }

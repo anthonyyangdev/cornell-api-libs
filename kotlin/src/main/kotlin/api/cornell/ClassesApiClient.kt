@@ -53,7 +53,11 @@ object ClassesApiClient {
                         } else {
                             json.asString
                         }
-                        Subject.valueOf(value)
+                        try {
+                            Subject.valueOf(value)
+                        } catch (e: IllegalArgumentException) {
+                            Subject.UNKNOWN
+                        }
                     })
             .create()
     /**
@@ -181,6 +185,66 @@ object ClassesApiClient {
         http.request<CoursesResponse>(
                 path = "/search/classes.json", parameters = params
         ) { handler(it.courses) }
+    }
+
+    /**
+     * [getAllCourses] returns a list of all courses.
+     * It blocks until the results are ready. It may take you five to ten minutes.
+     *
+     * @param coolingTimeMs the time to wait between two consecutive fetch of classes within a
+     * subject. It defaults to 50.
+     * @param doPrintDebuggingInfo whether to print debugging information, which defaults to false.
+     */
+    fun getAllCourses(
+            coolingTimeMs: Long = 50, doPrintDebuggingInfo: Boolean = false
+    ): List<Course> {
+        val startTime = System.currentTimeMillis()
+        val courseList = arrayListOf<Course>()
+        val rosters = http
+                .blockingRequest<RostersResponse>(path = "/config/rosters.json")
+                .rosters
+                .asSequence()
+                .map { it.semester }
+                .filter { it.contains(other = "FA") || it.contains(other = "SP") }
+                .toList()
+        if (doPrintDebuggingInfo) {
+            System.err.println("We have ${rosters.size} semesters in total.")
+        }
+        var semesterCount = 0
+        for (roster in rosters) {
+            val subjects = http.blockingRequest<SubjectsResponse>(
+                    path = "/config/subjects.json", parameters = listOf("roster" to roster)
+            ).subjects
+            if (doPrintDebuggingInfo) {
+                System.err.println("We have ${subjects.size} subjects in $roster total.")
+            }
+            var subjectCount = 0
+            for (subject in subjects) {
+                val courses = http.blockingRequest<CoursesResponse>(
+                        path = "/search/classes.json",
+                        parameters = listOf("roster" to roster, "subject" to subject)
+                ).courses
+                courseList.addAll(elements = courses)
+                Thread.sleep(coolingTimeMs)
+                subjectCount++
+                if (doPrintDebuggingInfo) {
+                    System.err.println(
+                            "There're ${courses.size} courses in ${subject.description} in $roster."
+                    )
+                    System.err.println(
+                            "We fetched $subjectCount out of ${subjects.size} subjects in $roster."
+                    )
+                }
+            }
+            semesterCount++
+            if (doPrintDebuggingInfo) {
+                System.err.println("We fetched $semesterCount out of ${rosters.size} semesters.")
+            }
+        }
+        if (doPrintDebuggingInfo) {
+            System.err.println("Total Running Time: ${System.currentTimeMillis() - startTime}ms.")
+        }
+        return courseList
     }
 
 }
