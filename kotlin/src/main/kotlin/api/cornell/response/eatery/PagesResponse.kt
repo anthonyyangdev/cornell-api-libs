@@ -10,18 +10,17 @@ internal class PagesResponse private constructor() {
     /**
      * Main data of response.
      */
-    private val data: Data? = null
+    private val data: Data = Data()
     /**
      * Obtain the pages information.
      */
-    val pages: List<Page>?
-        get() = data?.pages
+    val pages: List<Page> get() = data.pages
 
     /**
      * [Data] is an uninteresting class that just holds an array of [Page].
      */
-    private inner class Data private constructor() {
-        val pages: List<Page>? = null
+    private inner class Data internal constructor() {
+        val pages: List<Page> = emptyList()
     }
 
 }

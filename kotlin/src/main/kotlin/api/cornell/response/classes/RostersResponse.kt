@@ -10,18 +10,17 @@ internal class RostersResponse private constructor() {
     /**
      * Main data of response.
      */
-    private val data: Data? = null
+    private val data: Data = Data()
     /**
      * Obtain the rosters information.
      */
-    val rosters: List<Roster>?
-        get() = data?.rosters
+    val rosters: List<Roster> get() = data.rosters
 
     /**
      * [Data] is an uninteresting class that just holds an array of [Roster].
      */
-    private inner class Data private constructor() {
-        val rosters: List<Roster>? = null
+    private inner class Data internal constructor() {
+        val rosters: List<Roster> = emptyList()
     }
 
 }

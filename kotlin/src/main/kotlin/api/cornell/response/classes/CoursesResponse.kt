@@ -11,19 +11,18 @@ internal class CoursesResponse private constructor() {
     /**
      * Main data of response.
      */
-    private val data: Data? = null
+    private val data: Data = Data()
     /**
      * Obtain the academic groups information.
      */
-    val courses: List<Course>?
-        get() = data?.courses
+    val courses: List<Course> get() = data.courses
 
     /**
      * [Data] is an uninteresting class that just holds an array of [Course].
      */
-    private inner class Data private constructor() {
+    private inner class Data internal constructor() {
         @SerializedName(value = "classes")
-        val courses: List<Course>? = null
+        val courses: List<Course> = emptyList()
     }
 
 }

@@ -3,6 +3,7 @@ package api.cornell
 import com.github.kittinunf.fuel.httpGet
 import com.github.kittinunf.result.Result
 import com.google.gson.Gson
+import kotlin.system.exitProcess
 
 /**
  * [Http] is used for providing support for API access.
@@ -19,9 +20,11 @@ internal class Http(private val prefix: String, private val gson: Gson) {
      * @param parameters defines a list of parameters to give. This is optional.
      * @param handler defines a handler to process result.
      */
-    inline fun <reified T> request(path: String,
-                                   parameters: List<Pair<String, Any?>>? = null,
-                                   crossinline handler: (T?) -> Unit) {
+    inline fun <reified T> request(
+            path: String,
+            parameters: List<Pair<String, Any?>>? = null,
+            crossinline handler: (T) -> Unit
+    ) {
         val url = prefix + path
         url.httpGet(parameters = parameters).responseString { _, _, result ->
             when (result) {
@@ -35,8 +38,8 @@ internal class Http(private val prefix: String, private val gson: Gson) {
                     handler(obj)
                 }
                 is Result.Failure -> {
-                    handler(null)
                     result.error.exception.printStackTrace()
+                    exitProcess(status = 1)
                 }
             }
         }

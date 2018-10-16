@@ -50,8 +50,8 @@ object DiningApiClient {
      *
      * @param handler handler to receive all pages on the Cornell Dining website.
      */
-    fun getPages(handler: (List<Page>?) -> Unit) =
-            http.request<PagesResponse>(path = "/config/pages.json") { handler(it?.pages) }
+    fun getPages(handler: (List<Page>) -> Unit): Unit =
+            http.request<PagesResponse>(path = "/config/pages.json") { handler(it.pages) }
 
     /**
      * Obtain all eateries (i.e. dining halls, cafes) under Cornell Dining.
@@ -59,7 +59,7 @@ object DiningApiClient {
      *
      * @param handler handler to receive all eateries under Cornell Dining.
      */
-    fun getEateries(handler: (List<Eatery>?) -> Unit) =
-            http.request<EateriesResponse>(path = "/dining/eateries.json") { handler(it?.eateries) }
+    fun getEateries(handler: (List<Eatery>) -> Unit): Unit =
+            http.request<EateriesResponse>(path = "/dining/eateries.json") { handler(it.eateries) }
 
 }

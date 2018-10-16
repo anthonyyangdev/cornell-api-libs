@@ -66,8 +66,8 @@ object ClassesApiClient {
      *
      * @param handler handler to receive all available Cornell rosters.
      */
-    fun getRosters(handler: (List<Roster>?) -> Unit) =
-            http.request<RostersResponse>(path = "/config/rosters.json") { handler(it?.rosters) }
+    fun getRosters(handler: (List<Roster>) -> Unit): Unit =
+            http.request<RostersResponse>(path = "/config/rosters.json") { handler(it.rosters) }
 
     /**
      * Obtain all available academic careers for a roster.
@@ -77,10 +77,10 @@ object ClassesApiClient {
      * @param roster roster semester & year (i.e. FA14, SP15)
      * @param handler handler to receive all available academic careers for a roster.
      */
-    fun getAcademicCareers(roster: String, handler: (List<AcademicCareer>?) -> Unit) =
+    fun getAcademicCareers(roster: String, handler: (List<AcademicCareer>) -> Unit): Unit =
             http.request<AcademicCareersResponse>(
                     path = "/config/acadCareers.json", parameters = listOf("roster" to roster)
-            ) { handler(it?.academicCareers) }
+            ) { handler(it.academicCareers) }
 
     /**
      * Obtain all available academic groups for a roster.
@@ -90,10 +90,10 @@ object ClassesApiClient {
      * @param roster roster semester & year (i.e. FA14, SP15)
      * @param handler handler to receive all available academic groups for a roster.
      */
-    fun getAcademicGroups(roster: String, handler: (List<AcademicGroup>?) -> Unit) =
+    fun getAcademicGroups(roster: String, handler: (List<AcademicGroup>) -> Unit): Unit =
             http.request<AcademicGroupsResponse>(
                     path = "/config/acadGroups.json", parameters = listOf("roster" to roster)
-            ) { handler(it?.academicGroups) }
+            ) { handler(it.academicGroups) }
 
     /**
      * Obtain all available class levels for a roster.
@@ -103,10 +103,10 @@ object ClassesApiClient {
      * @param roster roster semester & year (i.e. FA14, SP15)
      * @param handler handle to receive all available class levels for a roster.
      */
-    fun getClassLevels(roster: String, handler: (List<ClassLevel>?) -> Unit) =
+    fun getClassLevels(roster: String, handler: (List<ClassLevel>) -> Unit): Unit =
             http.request<ClassLevelsResponse>(
                     path = "/config/classLevels.json", parameters = listOf("roster" to roster)
-            ) { handler(it?.classLevels) }
+            ) { handler(it.classLevels) }
 
     /**
      * Obtain all available course subjects for a roster.
@@ -114,10 +114,10 @@ object ClassesApiClient {
      * @param roster roster semester & year (i.e. FA14, SP15)
      * @param handler handle to receive all available course subjects for a roster.
      */
-    fun getSubjects(roster: String, handler: (List<Subject>?) -> Unit) =
+    fun getSubjects(roster: String, handler: (List<Subject>) -> Unit): Unit =
             http.request<SubjectsResponse>(
                     path = "/config/subjects.json", parameters = listOf("roster" to roster)
-            ) { handler(it?.subjects) }
+            ) { handler(it.subjects) }
 
     /**
      * Obtain all classes in the specified roster and subject that match the input query.
@@ -131,7 +131,7 @@ object ClassesApiClient {
      * @param handler handler to receive all classes in the specified roster and subject that match
      * the input query.
      */
-    fun getCourses(roster: String, subject: Subject, handler: (List<Course>?) -> Unit) =
+    fun getCourses(roster: String, subject: Subject, handler: (List<Course>) -> Unit): Unit =
             getCourses(roster, subject, null, null,
                     null, null, null, handler)
 
@@ -148,11 +148,13 @@ object ClassesApiClient {
      * @param handler handler to receive all classes in the specified roster and subject that match
      * the input query.
      */
-    fun getCourses(roster: String, subject: Subject,
-                   academicCareers: Array<AcademicCareer>?,
-                   academicGroups: Array<AcademicGroup>?,
-                   classLevels: IntArray?, classAttributes: Array<String>?,
-                   query: String?, handler: (List<Course>?) -> Unit) {
+    fun getCourses(
+            roster: String, subject: Subject,
+            academicCareers: Array<AcademicCareer>?,
+            academicGroups: Array<AcademicGroup>?,
+            classLevels: IntArray?, classAttributes: Array<String>?,
+            query: String?, handler: (List<Course>) -> Unit
+    ) {
         val params: MutableList<Pair<String, Any?>> =
                 arrayListOf("roster" to roster, "subject" to subject)
         academicCareers?.let {
@@ -178,7 +180,7 @@ object ClassesApiClient {
         query?.let { params.add("q" to it) }
         http.request<CoursesResponse>(
                 path = "/search/classes.json", parameters = params
-        ) { handler(it?.courses) }
+        ) { handler(it.courses) }
     }
 
 }
