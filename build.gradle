@@ -38,7 +38,7 @@ compileTestKotlin {
 
 dokka {
     outputFormat = 'html'
-    outputDirectory = "../../docs"
+    outputDirectory = "../docs"
     jdkVersion = 8
     skipDeprecated = false
     skipEmptyPackages = true

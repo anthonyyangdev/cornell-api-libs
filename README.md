@@ -1,16 +1,43 @@
-# Cornell API Client Libraries
+# Cornell API Client Library in Kotlin
 
-Client Libraries for Cornell's public APIs implemented in different languages.
+Kotlin-friendly Cornell API Client Library.
 
 I would thank [Cornell Open Data Initiative](https://github.com/cornell-data)'s
 documentation for APIs.
 
-Check each sub-folder for more detail. Although those sub-folders contain a link
-to their docs, you also need to read Cornell's
-[API Spec](https://app.swaggerhub.com/apis/codi-admin/cornell-classes-api/) to
-make sense of what's happening.
+## Docs
 
-## Authors
+The [docs](https://docs.developersam.com/cornell-api-lib-kotlin/) contains all the type definitions
+and a brief description of the purpose of each property. Please read it when you are unsure about
+something. You also need to read Cornell's
+[API Spec](https://app.swaggerhub.com/apis/codi-admin/cornell-classes-api/) to make sense of what's
+happening.
 
-- Java: Sam
-- Kotlin: Sam
+Currently, the client library only covers
+
+- Cornell Classes API
+- Cornell Dining API
+
+## Example Usage
+
+### Library Usage
+
+```kotlin
+fun main(args: Array<String>) {
+    ClassesApiClient.getRosters { rosterList ->
+        rosterList.map { it.defaultCampus }.forEach { println(it) }
+    }
+    println(ClassesApiClient.getAllCourses())
+}
+```
+
+For more example, you can see some code snippets in
+[PlaygroundTest](src/test/kotlin/api/cornell/PlaygroundTest.kt).
+
+### CLI Usage
+
+```bash
+# Print all courses to a json file for later usage.
+java -jar cornell-api-lib-kotlin.jar print-all-courses > courses.json
+# It will print progress messages along the way.
+```
