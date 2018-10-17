@@ -14,4 +14,3 @@ make sense of what's happening.
 
 - Java: Sam
 - Kotlin: Sam
-- Python: `None`
