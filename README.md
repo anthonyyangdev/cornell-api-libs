@@ -1,9 +1,25 @@
 # Cornell API Client Library in Kotlin
 
+[![Release](https://jitpack.io/v/SamChou19815/cornell-api-libs.svg)](https://jitpack.io/#SamChou19815/cornell-api-libs)
+
 Kotlin-friendly Cornell API Client Library.
 
 I would thank [Cornell Open Data Initiative](https://github.com/cornell-data)'s
 documentation for APIs.
+
+## Gradle Config
+
+Add this to your `build.gradle` to use the artifact.
+
+```groovy
+repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+}
+dependencies {
+    implementation 'com.github.SamChou19815:cornell-api-libs:+'
+}
+```
 
 ## Docs
 
