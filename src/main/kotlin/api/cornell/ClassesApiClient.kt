@@ -247,4 +247,53 @@ object ClassesApiClient {
         return courseList
     }
 
+    /**
+     * [getAllRecentCSCourses] returns a list of all recent CS courses.
+     * It blocks until the results are ready. It may take you five to ten minutes.
+     *
+     * @param coolingTimeMs the time to wait between two consecutive fetch of classes within a
+     * subject. It defaults to 50.
+     * @param doPrintDebuggingInfo whether to print debugging information, which defaults to false.
+     */
+    fun getAllRecentCSCourses(
+            coolingTimeMs: Long = 50, doPrintDebuggingInfo: Boolean = false
+    ): List<Course> {
+        val startTime = System.currentTimeMillis()
+        val courseMap = hashMapOf<String, Course>()
+        val rosters = http
+                .blockingRequest<RostersResponse>(path = "/config/rosters.json")
+                .rosters
+                .asSequence()
+                .map { it.semester }
+                .filter { it.contains(other = "FA") || it.contains(other = "SP") }
+                .toList()
+        if (doPrintDebuggingInfo) {
+            System.err.println("We have ${rosters.size} semesters in total.")
+        }
+        var semesterCount = 0
+        for (roster in rosters) {
+            val courses = http.blockingRequest<CoursesResponse>(
+                    path = "/search/classes.json",
+                    parameters = listOf("roster" to roster, "subject" to Subject.CS)
+            ).courses
+            courses.asSequence().map { it.catalogNumber to it }.forEach { (code, course) ->
+                courseMap[code] = course
+            }
+            Thread.sleep(coolingTimeMs)
+            if (doPrintDebuggingInfo) {
+                System.err.println(
+                        "There are ${courses.size} courses in CS in $roster."
+                )
+            }
+            semesterCount++
+            if (doPrintDebuggingInfo) {
+                System.err.println("We fetched $semesterCount out of ${rosters.size} semesters.")
+            }
+        }
+        if (doPrintDebuggingInfo) {
+            System.err.println("Total Running Time: ${System.currentTimeMillis() - startTime}ms.")
+        }
+        return courseMap.values.sortedBy { it.catalogNumber }
+    }
+
 }
