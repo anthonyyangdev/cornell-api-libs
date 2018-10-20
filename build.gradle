@@ -7,14 +7,10 @@ plugins {
 }
 
 group 'com.developersam'
-version '0.3.1'
+version '0.3.2'
 
 repositories {
-    mavenCentral()
     jcenter()
-    maven {
-        url 'https://dl.bintray.com/kotlin/kotlin-eap'
-    }
 }
 
 dependencies {
@@ -23,7 +19,7 @@ dependencies {
     // GSON
     compile 'com.google.code.gson:gson:2.8.5'
     // HTTP
-    compile 'com.github.kittinunf.fuel:fuel:+'
+    compile 'com.github.kittinunf.fuel:fuel:1.15.1'
 }
 
 compileKotlin {
@@ -51,14 +47,5 @@ dokka {
 test {
     testLogging {
         events "passed", "skipped", "failed", "standardOut", "standardError"
-    }
-}
-
-jar {
-    manifest {
-        attributes 'Main-Class': 'api.cornell.Main'
-    }
-    from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
