@@ -7,7 +7,7 @@ plugins {
 }
 
 group 'com.developersam'
-version '0.3.0'
+version '0.3.1'
 
 repositories {
     mavenCentral()
@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.71'
     testImplementation 'junit:junit:4.12'
     // GSON
     compile 'com.google.code.gson:gson:2.8.5'
