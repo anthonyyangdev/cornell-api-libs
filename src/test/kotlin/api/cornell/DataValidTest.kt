@@ -30,7 +30,7 @@ class DataValidTest {
             latch.countDown()
         }
         latch.await()
-        val rosters = rostersVar.get() ?: throw Error()
+        val rosters = rostersVar.get() ?: error(message = "Impossible!")
         for (roster in rosters) {
             allItems.add(roster.toString())
             val semester = roster.semester

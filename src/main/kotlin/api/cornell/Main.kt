@@ -2,7 +2,6 @@
 
 package api.cornell
 
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
 /**
@@ -13,6 +12,7 @@ private fun printHelp() {
             Usage: java -jar cornell-api-lib-kotlin.jar [arg]
             Possible args:
             print-all-courses: prints the JSON of a list of all courses in all semesters
+            print-all-courses-in [sem]: prints the JSON of a list of the all courses in semester [sem].
             print-all-cs-recent: prints the JSON of a list of all CS courses in recent semesters.
         """.trimIndent())
 }
@@ -30,6 +30,13 @@ fun main(args: Array<String>) {
         "print-all-courses" ->
             gson.toJson(
                     ClassesApiClient.getAllCourses(doPrintDebuggingInfo = true),
+                    System.out
+            )
+        "print-all-courses-in" ->
+            gson.toJson(
+                    ClassesApiClient.getAllCoursesInSemester(
+                            semester = args[1], doPrintDebuggingInfo = true
+                    ),
                     System.out
             )
         "print-all-cs-recent" ->
